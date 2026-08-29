@@ -1,0 +1,129 @@
+:root {
+  --color-navy: #17284A;
+  --color-ink: #101B2D;
+  --color-red: #B23A2E;
+  --color-amber: #DD7E22;
+  --color-green: #1C9B6B;
+  --color-canvas: #F5F6F9;
+  --color-card: #FFFFFF;
+  --color-border: #E3E7EE;
+  --color-sub: #5B6472;
+  --color-muted: #8E96A3;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', 'Inter', sans-serif;
+  color: var(--color-navy);
+}
+
+/* Card Hover Lift Effect */
+.kpi-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 4px 12px rgba(16,27,45,0.08), 0 12px 24px rgba(16,27,45,0.06) !important;
+}
+
+/* Table Row Hover (Background color only - #FAFBFC, NO translateY lift) */
+.table-row-hover:hover {
+  background-color: #FAFBFC !important;
+}
+
+/* Live Badge with CSS ::after ring animation */
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background-color: #E3F5EC;
+  color: #127A50;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #1C9B6B;
+  position: relative;
+}
+
+.live-badge-active .live-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px solid #1C9B6B;
+  animation: pulse-ring 1.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* Slide-in entry animation for live feed events */
+.feed-item-slide-in {
+  animation: slide-down 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-canvas);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
+}
+
+/* Responsive Fallbacks below ~900px */
+@media (max-width: 900px) {
+  .dashboard-grid-bi {
+    grid-template-columns: 1fr !important;
+  }
+}
