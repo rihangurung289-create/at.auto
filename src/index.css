@@ -1,20 +1,30 @@
 :root {
-  --color-navy: #17284A;
-  --color-ink: #101B2D;
-  --color-red: #B23A2E;
-  --color-amber: #DD7E22;
-  --color-green: #1C9B6B;
-  --color-canvas: #F5F6F9;
+  --color-navy: #0F1E36;
+  --color-navy-light: #17284A;
+  --color-ink: #0F172A;
+  --color-slate: #334155;
+  --color-canvas: #F1F5F9;
   --color-card: #FFFFFF;
-  --color-border: #E3E7EE;
-  --color-sub: #5B6472;
-  --color-muted: #8E96A3;
+  --color-border: #E2E8F0;
+  --color-sub: #64748B;
+  --color-muted: #94A3B8;
+
+  --color-sapphire: #2563EB;
+  --color-emerald: #10B981;
+  --color-amber: #F59E0B;
+  --color-coral: #EF4444;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -31,78 +41,35 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-navy);
 }
 
-/* Card Hover Lift Effect */
-.kpi-card:hover {
-  transform: translateY(-3px) !important;
-  box-shadow: 0 4px 12px rgba(16,27,45,0.08), 0 12px 24px rgba(16,27,45,0.06) !important;
+/* Sidebar Styling & Active Highlighting */
+.sidebar-nav-item {
+  position: relative;
+  text-align: left;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Table Row Hover (Background color only - #FAFBFC, NO translateY lift) */
+.sidebar-nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: #FFFFFF !important;
+}
+
+.sidebar-nav-active {
+  background-color: var(--color-sapphire) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+}
+
+/* Table Row Hover */
 .table-row-hover:hover {
-  background-color: #FAFBFC !important;
+  background-color: #F8FAFC !important;
 }
 
-/* Live Badge with CSS ::after ring animation */
-.live-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 2px 8px;
-  border-radius: 9999px;
-  background-color: #E3F5EC;
-  color: #127A50;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  position: relative;
+/* Buttons and interactive micro-interactions */
+button:active {
+  transform: scale(0.98);
 }
 
-.live-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #1C9B6B;
-  position: relative;
-}
-
-.live-badge-active .live-dot::after {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: 50%;
-  border: 1.5px solid #1C9B6B;
-  animation: pulse-ring 1.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-}
-
-@keyframes pulse-ring {
-  0% {
-    transform: scale(0.6);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(2.2);
-    opacity: 0;
-  }
-}
-
-/* Slide-in entry animation for live feed events */
-.feed-item-slide-in {
-  animation: slide-down 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes slide-down {
-  0% {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Custom Scrollbar */
+/* Custom Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -121,9 +88,66 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--color-muted);
 }
 
-/* Responsive Fallbacks below ~900px */
-@media (max-width: 900px) {
-  .dashboard-grid-bi {
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.page-enter {
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Responsive Shell Breakpoints */
+.dashboard-mobile-header {
+  display: none !important;
+}
+
+.dashboard-sidebar-desktop {
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .dashboard-sidebar-desktop {
+    display: none !important;
+  }
+
+  .dashboard-mobile-header {
+    display: flex !important;
+  }
+
+  .asymmetric-row-1 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .asymmetric-row-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-main-content {
+    padding: 1rem 0.75rem 2.5rem 0.75rem !important;
+    gap: 1rem !important;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+@media (max-width: 440px) {
+  .kpi-grid {
     grid-template-columns: 1fr !important;
   }
 }

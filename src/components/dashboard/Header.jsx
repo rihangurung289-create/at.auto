@@ -6,7 +6,7 @@ import { Avatar } from './Avatar';
 export const Header = ({ user, activeAlertsCount = 2, isLive = true, onToggleLive }) => {
   return (
     <header style={{
-      background: colors.card,
+      backgroundColor: colors.card,
       borderBottom: `1px solid ${colors.border}`,
       padding: "0.85rem 1.75rem",
       display: "flex",
@@ -17,34 +17,47 @@ export const Header = ({ user, activeAlertsCount = 2, isLive = true, onToggleLiv
       top: 0,
       zIndex: 100
     }}>
-      {/* School Brand Block */}
+      {/* Brand Identity Block */}
       <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
         <div style={{
-          width: 38,
-          height: 38,
+          width: 40,
+          height: 40,
           borderRadius: 10,
-          background: colors.navy,
+          backgroundColor: colors.navy,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           color: "white"
         }}>
-          <Shield size={20} color="#FFFFFF" />
+          <Shield size={22} color="#FFFFFF" />
         </div>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+            {/* Product Identity AT.AUTO + School Name */}
+            <span style={{
+              fontFamily: fonts.headline,
+              fontSize: "1.15rem",
+              fontWeight: 700,
+              color: colors.navy,
+              letterSpacing: "-0.01em"
+            }}>
+              AT.AUTO
+            </span>
+
+            <span style={{ color: colors.border, fontSize: "0.9rem" }}>|</span>
+
             <h1 style={{
               fontFamily: fonts.headline,
-              fontSize: "1.1rem",
+              fontSize: "1.05rem",
               fontWeight: 600,
-              color: colors.navy,
+              color: colors.ink,
               margin: 0,
               lineHeight: 1.2
             }}>
               National School of Sciences
             </h1>
 
-            {/* Pulsing Live Badge via CSS ::after ring */}
+            {/* Pulsing Live Badge */}
             <div
               className={`live-badge ${isLive ? 'live-badge-active' : ''}`}
               onClick={onToggleLive}
@@ -58,7 +71,7 @@ export const Header = ({ user, activeAlertsCount = 2, isLive = true, onToggleLiv
 
           <p style={{
             fontFamily: fonts.body,
-            fontSize: "0.75rem",
+            fontSize: "0.74rem",
             color: colors.sub,
             margin: 0,
             fontWeight: 400
@@ -68,7 +81,7 @@ export const Header = ({ user, activeAlertsCount = 2, isLive = true, onToggleLiv
         </div>
       </div>
 
-      {/* Right Tools (No search bar in Header) */}
+      {/* Right Tools: Notifications & Profile */}
       <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
         
         {/* Notifications Bell */}
@@ -79,7 +92,7 @@ export const Header = ({ user, activeAlertsCount = 2, isLive = true, onToggleLiv
             height: 38,
             borderRadius: "50%",
             border: `1px solid ${colors.border}`,
-            background: colors.card,
+            backgroundColor: colors.card,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -112,7 +125,7 @@ export const Header = ({ user, activeAlertsCount = 2, isLive = true, onToggleLiv
 
         {/* Profile Avatar & Menu */}
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer" }}>
-          <Avatar name={user?.name || "Ram Adhikari"} photoUrl={user?.photoUrl} match={99} size={36} />
+          <Avatar name={user?.name || "Dr. Ram Adhikari"} photoUrl={user?.photoUrl} match={null} size={36} />
           <div style={{ display: "flex", flexDirection: "column" }}>
             <span style={{ fontFamily: fonts.body, fontSize: "0.82rem", fontWeight: 600, color: colors.ink, lineHeight: 1.2 }}>
               {user?.name || "Dr. Ram Adhikari"}
